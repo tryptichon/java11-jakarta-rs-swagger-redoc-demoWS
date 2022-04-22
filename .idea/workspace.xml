@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="795f7906-bbd4-40ec-bda9-c0a37ebe2d4c" name="Changes" comment="First import">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,6 @@
     "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
@@ -183,7 +183,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650648064415</updated>
       <workItem from="1650648065610" duration="2639000" />
-      <workItem from="1650653409435" duration="4579000" />
+      <workItem from="1650653409435" duration="5122000" />
     </task>
     <task id="LOCAL-00001" summary="First import">
       <created>1650657945527</created>
@@ -192,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650657945527</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First import">
+      <created>1650658036112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650658036112</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
