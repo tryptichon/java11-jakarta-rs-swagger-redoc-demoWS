@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="795f7906-bbd4-40ec-bda9-c0a37ebe2d4c" name="Changes" comment="Update on documentation and licenses">
+    <list default="true" id="795f7906-bbd4-40ec-bda9-c0a37ebe2d4c" name="Changes" comment="Do not insist on openapi.json">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demows/HelloResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demows/HelloResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/doc/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/doc/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,11 +29,20 @@
         <option value="HTML File" />
         <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="OpenAPI" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demows/HelloApplication.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demows/HelloResource.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/doc/index.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/index.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -45,23 +60,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "true",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\duke0\IdeaProjects\demoWS\src\main\resources" />
       <recent name="C:\Users\duke0\IdeaProjects\demoWS\src\main\webapp\js" />
     </key>
   </component>
@@ -74,6 +93,54 @@
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.12">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="true" />
+      <option name="generateToPath" value="C:\Users\duke0\IdeaProjects\demoWS\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="11" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\Users\duke0\IdeaProjects\demoWS\openapi.json" />
+      <method v="2" />
+    </configuration>
+    <configuration name="openapi.json (1)" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="true" />
+      <option name="generateToPath" value="C:\Users\duke0\IdeaProjects\demoWS\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="11" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\Users\duke0\IdeaProjects\demoWS\openapi.json" />
+      <method v="2" />
+    </configuration>
+    <configuration name="openapi.json" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="true" />
+      <option name="generateToPath" value="C:\Users\duke0\IdeaProjects\demoWS\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="11" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\Users\duke0\IdeaProjects\demoWS\src\main\resources\openapi.json" />
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 10.0.12" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.12" ALTERNATIVE_JRE_ENABLED="false">
@@ -165,6 +232,8 @@
     </configuration>
     <list>
       <item itemvalue="HTTP Request.generated-requests | #1" />
+      <item itemvalue="Swagger Codegen.openapi.json" />
+      <item itemvalue="Swagger Codegen.openapi.json (1)" />
       <item itemvalue="Tomcat Server.Tomcat 10.0.12" />
     </list>
     <recent_temporary>
@@ -182,7 +251,14 @@
       <option name="presentableId" value="Default" />
       <updated>1650648064415</updated>
       <workItem from="1650648065610" duration="2639000" />
-      <workItem from="1650653409435" duration="5403000" />
+      <workItem from="1650653409435" duration="5969000" />
+      <workItem from="1650659445042" duration="575000" />
+      <workItem from="1650660038007" duration="855000" />
+      <workItem from="1650661031978" duration="8000" />
+      <workItem from="1650661068409" duration="9000" />
+      <workItem from="1650661318656" duration="305000" />
+      <workItem from="1650661700141" duration="200000" />
+      <workItem from="1650722524760" duration="115000" />
     </task>
     <task id="LOCAL-00001" summary="First import">
       <created>1650657945527</created>
@@ -205,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650658749293</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Do not insist on openapi.json">
+      <created>1650658927024</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650658927024</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +310,11 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="First import" />
     <MESSAGE value="Update on documentation and licenses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update on documentation and licenses" />
+    <MESSAGE value="Do not insist on openapi.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Do not insist on openapi.json" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@page pageEncoding="UTF-8" contentType="text/html; charset=utf8"%>
+    <%@page pageEncoding="UTF-8" contentType="text/html; charset=utf8" %>
     <%
         String contextPath = request.getContextPath();
     %>
-    <title>ReDoc <%=contextPath%></title>
+    <title>ReDoc <%=contextPath%>
+    </title>
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +24,6 @@
 </head>
 <body>
 <redoc spec-url="<%=contextPath%>/api/openapi.json"></redoc>
-<script src="<%=contextPath%>/js/redoc.standalone.js"> </script>
+<script src="<%=contextPath%>/js/redoc.standalone.js"></script>
 </body>
 </html>
