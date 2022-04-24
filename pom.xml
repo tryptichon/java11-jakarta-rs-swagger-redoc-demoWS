@@ -97,8 +97,9 @@
               image from the project.artifactId and project.version and store it in a property called docker.image.
             -->
             <plugin>
-                <groupId>org.codehaus.groovy.maven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.13.1</version>
                 <executions>
                     <execution>
                         <id>Generate docker tag and name from project version and artifactId</id>
@@ -106,22 +107,41 @@
                         <goals>
                             <goal>execute</goal>
                         </goals>
-                        <configuration>
-                            <source>
-                                String docker_image_name = "${docker.image.name}" ?: "${project.artifactId}".toLowerCase()
-
-                                String docker_image_tag = "${docker.image.tag}" ?:
-                                        ("${project.version}".endsWith('-SNAPSHOT') ?
-                                                "t${project.version}".replace('-SNAPSHOT', '') :
-                                                "v${project.version}")
-
-                                project.properties.setProperty('docker.image', "${docker_image_name}:${docker_image_tag}")
-
-                                println("Calculated docker image ${project.properties.getProperty('docker.image')}")
-                            </source>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <scripts>
+                        <script>
+                            <![CDATA[
+String docker_image_name = "${docker.image.name}" ?: "${project.artifactId}".toLowerCase()
+
+String docker_image_tag = "${docker.image.tag}" ?:
+        ("${project.version}".endsWith('-SNAPSHOT') ?
+                "t${project.version}".replace('-SNAPSHOT', '') :
+                "v${project.version}")
+
+project.properties.setProperty('docker.image', "${docker_image_name}:${docker_image_tag}")
+
+println("Calculated docker image ${project.properties.getProperty('docker.image')}")
+                            ]]>
+                        </script>
+                    </scripts>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <!-- any version of Groovy \>= 1.5.0 should work here -->
+                        <version>3.0.10</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-ant</artifactId>
+                        <version>3.0.10</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
