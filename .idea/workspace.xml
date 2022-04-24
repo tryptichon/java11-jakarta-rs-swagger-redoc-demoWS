@@ -9,20 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="795f7906-bbd4-40ec-bda9-c0a37ebe2d4c" name="Changes" comment="Reformat / Optimize imports">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demoWS_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_ws_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demoWS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_ws_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="795f7906-bbd4-40ec-bda9-c0a37ebe2d4c" name="Changes" comment="Add docker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demows/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demows/api/app/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demows/HelloResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demows/api/services/HelloResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,7 +315,7 @@
       <workItem from="1650661700141" duration="200000" />
       <workItem from="1650722524760" duration="499000" />
       <workItem from="1650781142098" duration="17209000" />
-      <workItem from="1650803043436" duration="647000" />
+      <workItem from="1650803043436" duration="1402000" />
     </task>
     <task id="LOCAL-00001" summary="First import">
       <created>1650657945527</created>
@@ -370,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650722771685</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add docker">
+      <created>1650803709049</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1650803709049</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +390,8 @@
     <MESSAGE value="Update on documentation and licenses" />
     <MESSAGE value="Do not insist on openapi.json" />
     <MESSAGE value="Reformat / Optimize imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformat / Optimize imports" />
+    <MESSAGE value="Add docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add docker" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
