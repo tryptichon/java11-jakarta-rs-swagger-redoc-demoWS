@@ -92,6 +92,10 @@
                 <version>3.3.2</version>
             </plugin>
 
+            <!--
+              This plugin is used - in a somewhat awkward way - to create a compatible name and tag for a docker
+              image from the project.artifactId and project.version and store it in a property called docker.image.
+            -->
             <plugin>
                 <groupId>org.codehaus.groovy.maven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
@@ -106,17 +110,13 @@
                             <source>
                                 String docker_image_name = "${docker.image.name}" ?: "${project.artifactId}".toLowerCase()
 
-                                String docker_image_tag
-                                if ("${docker.image.tag}") {
-                                    docker_image_tag = "${docker.image.tag}"
-                                } else {
-                                    if ("${project.version}".endsWith('-SNAPSHOT')) {
-                                        docker_image_tag = "t${project.version}".replace('-SNAPSHOT', '')
-                                    } else {
-                                        docker_image_tag = "v${project.version}"
-                                    }
-                                }
+                                String docker_image_tag = "${docker.image.tag}" ?:
+                                        ("${project.version}".endsWith('-SNAPSHOT') ?
+                                                "t${project.version}".replace('-SNAPSHOT', '') :
+                                                "v${project.version}")
+
                                 project.properties.setProperty('docker.image', "${docker_image_name}:${docker_image_tag}")
+
                                 println("Calculated docker image ${project.properties.getProperty('docker.image')}")
                             </source>
                         </configuration>
@@ -149,7 +149,7 @@
 
                     <!--
                       Create new docker image using Dockerfile which must be present in current working directory.
-                      Tag the image using maven project version information.
+                      Name the image using maven project information using ${docker.image} (see gmaven-plugin above).
                     -->
                     <execution>
                         <id>docker-build</id>
@@ -171,7 +171,7 @@
                         </configuration>
                     </execution>
 
-                    <!--                    &lt;!&ndash; Login and Push the image to a docker repo. &ndash;&gt;-->
+                    <!-- Example of "Login and Push the image to a docker repo." -->
                     <!--                    <execution>-->
                     <!--                        <id>docker-login</id>-->
                     <!--                        <phase>deploy</phase>-->
