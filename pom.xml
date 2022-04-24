@@ -18,8 +18,8 @@
         <swagger.version>2.2.0</swagger.version>
 
         <!-- For custom image name and tag. Leave this empty to use artifactId and name as sources for the image. -->
-        <!--        <docker.image.name>your_image_name</docker.image.name>-->
-        <!--        <docker.image.tag>your_image_tag</docker.image.tag>-->
+        <docker.image.name></docker.image.name>
+        <docker.image.tag></docker.image.tag>
     </properties>
 
     <dependencies>
