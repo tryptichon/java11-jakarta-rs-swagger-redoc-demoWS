@@ -1,0 +1,6 @@
+version: "3.3"
+services:
+  tomcat:
+    image: com.example/demo_ws:t0.0.1
+    ports:
+      - '8080:8080'

@@ -1,4 +1,4 @@
-package com.example.demows;
+package com.example.demows.api.services;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

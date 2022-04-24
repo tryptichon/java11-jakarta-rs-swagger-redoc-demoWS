@@ -1,4 +1,4 @@
-package com.example.demows;
+package com.example.demows.api.app;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
