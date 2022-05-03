@@ -115,6 +115,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -140,27 +141,49 @@
                 </executions>
             </plugin>
 
-            <!--
-              This plugin is used - in a somewhat awkward way - to create a compatible name and tag for a docker
-              image from the project.artifactId and project.version and store it in a property called docker.image.
-            -->
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.13.1</version>
-                <executions>
-                    <execution>
-                        <id>Generate docker tag and name from project version and artifactId</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <scripts>
-                        <script>
-                            <![CDATA[
+        </plugins>
+    </build>
+
+    <!-- Building a docker image when `-Ddocker=true` is defined with mvn.
+         Example: mvn package -Ddocker=true
+     -->
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <activation>
+                <property>
+                    <name>docker</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <!-- For custom image name and tag. Leave this empty to use artifactId and name as sources for the image. -->
+                <docker.image.name></docker.image.name>
+                <docker.image.tag></docker.image.tag>
+            </properties>
+            <build>
+                <plugins>
+                    <!--
+                      This plugin is used - in a somewhat awkward way - to create a compatible name and tag for a docker
+                      image from the project.artifactId and project.version and store it in a property called docker.image.
+                    -->
+                    <plugin>
+                        <groupId>org.codehaus.gmavenplus</groupId>
+                        <artifactId>gmavenplus-plugin</artifactId>
+                        <version>1.13.1</version>
+                        <executions>
+                            <execution>
+                                <id>Generate docker tag and name from project version and artifactId</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <scripts>
+                                <script>
+                                    <![CDATA[
 String docker_image_name = "${docker.image.name}" ?: "${project.artifactId}".toLowerCase()
 
 String docker_image_tag = "${docker.image.tag}" ?:
@@ -170,115 +193,116 @@ String docker_image_tag = "${docker.image.tag}" ?:
 
 project.properties.setProperty('docker.image', "${docker_image_name}:${docker_image_tag}")
 
-println("Calculated docker image ${project.properties.getProperty('docker.image')}")
+// println("Calculated docker image ${project.properties.getProperty('docker.image')}")
                             ]]>
-                        </script>
-                    </scripts>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy</artifactId>
-                        <!-- any version of Groovy \>= 1.5.0 should work here -->
-                        <version>3.0.10</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-ant</artifactId>
-                        <version>3.0.10</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <!-- Remove existing image from local repo -->
-                    <execution>
-                        <id>docker-clean</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>docker</executable>
-                            <workingDirectory>${project.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>rmi</argument>
-                                <argument>-f</argument>
-                                <argument>${project.groupId}/${docker.image}</argument>
-                            </arguments>
+                                </script>
+                            </scripts>
                         </configuration>
-                    </execution>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy</artifactId>
+                                <!-- any version of Groovy \>= 1.5.0 should work here -->
+                                <version>3.0.10</version>
+                                <scope>runtime</scope>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.codehaus.groovy</groupId>
+                                <artifactId>groovy-ant</artifactId>
+                                <version>3.0.10</version>
+                                <scope>runtime</scope>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
 
-                    <!--
-                      Create new docker image using Dockerfile which must be present in current working directory.
-                      Name the image using maven project information using ${docker.image} (see gmaven-plugin above).
-                    -->
-                    <execution>
-                        <id>docker-build</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>docker</executable>
-                            <workingDirectory>${project.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>build</argument>
-                                <argument>--build-arg</argument>
-                                <argument>PROJECT_SOURCE_DIR=${project.artifactId}-${project.version}</argument>
-                                <argument>-t</argument>
-                                <argument>${project.groupId}/${docker.image}</argument>
-                                <argument>.</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <!-- Remove existing image from local repo -->
+                            <execution>
+                                <id>docker-clean</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>docker</executable>
+                                    <workingDirectory>${project.basedir}</workingDirectory>
+                                    <arguments>
+                                        <argument>rmi</argument>
+                                        <argument>-f</argument>
+                                        <argument>${project.groupId}/${docker.image}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
 
-                    <!-- Example of "Login and Push the image to a docker repo." -->
-                    <!--                    <execution>-->
-                    <!--                        <id>docker-login</id>-->
-                    <!--                        <phase>deploy</phase>-->
-                    <!--                        <goals>-->
-                    <!--                            <goal>exec</goal>-->
-                    <!--                        </goals>-->
-                    <!--                        <configuration>-->
-                    <!--                            <executable>docker</executable>-->
-                    <!--                            <workingDirectory>${project.basedir}</workingDirectory>-->
-                    <!--                            <arguments>-->
-                    <!--                                <argument>login</argument>-->
-                    <!--                                <argument>-u</argument>-->
-                    <!--                                <argument>${docker.user}</argument>-->
-                    <!--                                <argument>-p</argument>-->
-                    <!--                                <argument>${docker.password}</argument>-->
-                    <!--                                <argument>${docker.url}</argument>-->
-                    <!--                            </arguments>-->
-                    <!--                        </configuration>-->
-                    <!--                    </execution>-->
-                    <!--                    <execution>-->
-                    <!--                        <id>docker-push</id>-->
-                    <!--                        <phase>deploy</phase>-->
-                    <!--                        <goals>-->
-                    <!--                            <goal>exec</goal>-->
-                    <!--                        </goals>-->
-                    <!--                        <configuration>-->
-                    <!--                            <executable>docker</executable>-->
-                    <!--                            <workingDirectory>${project.basedir}</workingDirectory>-->
-                    <!--                            <arguments>-->
-                    <!--                                <argument>push</argument>-->
-                    <!--                                <argument>${project.groupId}/${project.artifactId}:${project.version}</argument>-->
-                    <!--                            </arguments>-->
-                    <!--                        </configuration>-->
-                    <!--                    </execution>-->
-                </executions>
-            </plugin>
+                            <!--
+                              Create new docker image using Dockerfile which must be present in current working directory.
+                              Name the image using maven project information using ${docker.image} (see gmaven-plugin above).
+                            -->
+                            <execution>
+                                <id>docker-build</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>docker</executable>
+                                    <workingDirectory>${project.basedir}</workingDirectory>
+                                    <arguments>
+                                        <argument>build</argument>
+                                        <argument>--build-arg</argument>
+                                        <argument>PROJECT_SOURCE_DIR=${project.artifactId}-${project.version}</argument>
+                                        <argument>-t</argument>
+                                        <argument>${project.groupId}/${docker.image}</argument>
+                                        <argument>.</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
 
-        </plugins>
-    </build>
+                            <!-- Example of "Login and Push the image to a docker repo." -->
+                            <!--                    <execution>-->
+                            <!--                        <id>docker-login</id>-->
+                            <!--                        <phase>deploy</phase>-->
+                            <!--                        <goals>-->
+                            <!--                            <goal>exec</goal>-->
+                            <!--                        </goals>-->
+                            <!--                        <configuration>-->
+                            <!--                            <executable>docker</executable>-->
+                            <!--                            <workingDirectory>${project.basedir}</workingDirectory>-->
+                            <!--                            <arguments>-->
+                            <!--                                <argument>login</argument>-->
+                            <!--                                <argument>-u</argument>-->
+                            <!--                                <argument>${docker.user}</argument>-->
+                            <!--                                <argument>-p</argument>-->
+                            <!--                                <argument>${docker.password}</argument>-->
+                            <!--                                <argument>${docker.url}</argument>-->
+                            <!--                            </arguments>-->
+                            <!--                        </configuration>-->
+                            <!--                    </execution>-->
+                            <!--                    <execution>-->
+                            <!--                        <id>docker-push</id>-->
+                            <!--                        <phase>deploy</phase>-->
+                            <!--                        <goals>-->
+                            <!--                            <goal>exec</goal>-->
+                            <!--                        </goals>-->
+                            <!--                        <configuration>-->
+                            <!--                            <executable>docker</executable>-->
+                            <!--                            <workingDirectory>${project.basedir}</workingDirectory>-->
+                            <!--                            <arguments>-->
+                            <!--                                <argument>push</argument>-->
+                            <!--                                <argument>${project.groupId}/${project.artifactId}:${project.version}</argument>-->
+                            <!--                            </arguments>-->
+                            <!--                        </configuration>-->
+                            <!--                    </execution>-->
+                        </executions>
+                    </plugin>
 
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
