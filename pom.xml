@@ -173,8 +173,15 @@
                         <version>1.13.1</version>
                         <executions>
                             <execution>
-                                <id>Generate docker tag and name from project version and artifactId</id>
+                                <id>Generate vars on build</id>
                                 <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>Generate vars on clean</id>
+                                <phase>clean</phase>
                                 <goals>
                                     <goal>execute</goal>
                                 </goals>
@@ -223,6 +230,24 @@ project.properties.setProperty('docker.image', "${docker_image_name}:${docker_im
                             <!-- Remove existing image from local repo -->
                             <execution>
                                 <id>docker-clean</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>docker</executable>
+                                    <workingDirectory>${project.basedir}</workingDirectory>
+                                    <arguments>
+                                        <argument>rmi</argument>
+                                        <argument>-f</argument>
+                                        <argument>${project.groupId}/${docker.image}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+
+                            <!-- Remove existing image from local repo -->
+                            <execution>
+                                <id>docker-remove-old</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>exec</goal>

@@ -9,18 +9,29 @@ An Jakarta-JAX-RS skeleton webapp using:
 
 Best to be used with IntelliJ IDEA and Java 11.
 
-## Create a docker image
+## Handling docker images
 
-Just run
+Using maven to handle docker image creation and cleanup is done by just activating the profile `docker`. This
+can be activated via `-Ddocker=true` on the commandline.
+
+Create a docker image:
 
 ```shell
 mvn package -Ddocker=true
+```
+
+Cleanup and remove the docker image:
+
+```shell
+mvn clean -Ddocker=true
 ```
 
 See [pom.xml](pom.xml) on how this is done.
 
 A sample [docker-compose.yaml](docker/docker-compose.yaml) is included to start a container easily. The
 parameter `image` there needs to be adjusted by hand when the project name / version changes.
+
+After the container has started, point your browser to `http://localhost:8080/`.
 
 ## Used tools and licenses
 
